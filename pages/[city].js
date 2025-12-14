@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'; // use 제거, useState만 사용
 import { useRouter } from 'next/router'; // Next.js 라우터 훅 추가
-import styles from './styles/Weather.module.css';
+import styles from '../styles/Weather.module.css';
 
 const MOCK_DATA = {
     city: 'Seoul',
