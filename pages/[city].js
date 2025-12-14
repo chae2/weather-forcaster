@@ -33,7 +33,12 @@ const ForecastItem = ({ dayData }) => {
         <li className={styles.forecastItem}>
             <div className={styles.forecastSummary} onClick={() => setIsOpen(!isOpen)}>
                 <span>{dayData.date}</span>
-                <span>{isOpen ? '▲' : '▼'}</span>
+                {/* 텍스트 대신 이미지 태그 사용 */}
+                <img
+                    src={isOpen ? "/up.png" : "/down.png"} // 상태에 따라 경로 변경
+                    alt={isOpen ? "접기" : "펼치기"}
+                    className={styles.directionImage}
+                />
             </div>
 
             {isOpen && (
