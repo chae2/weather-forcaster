@@ -1,4 +1,12 @@
-/*폰트 파일 가져오기*/
+/* 1. Light (300) - 본문용 */
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 300;
+    src: url('/fonts/Pretendard-Light.woff2') format('woff2');
+    font-display: swap;
+}
+
+/* 2. Bold (700) - 강조용 */
 @font-face {
     font-family: 'Pretendard';
     font-weight: 700;
@@ -6,11 +14,17 @@
     font-display: swap;
 }
 
+/* 3. ExtraBold (800) - 제목(H1)용 */
 @font-face {
     font-family: 'Pretendard';
-    font-weight: 300;
-    src: url('/fonts/Pretendard-Light.woff2') format('woff2');
+    font-weight: 800;
+    src: url('/fonts/Pretendard-ExtraBold.woff2') format('woff2');
     font-display: swap;
+}
+
+h1 {
+    font-family: 'Pretendard';
+    font-weight: 800; /* Pretendard-ExtraBold.woff2 파일 로드됨 */
 }
 
 /*기본 스타일*/

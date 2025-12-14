@@ -21,6 +21,8 @@ const typeDefs = gql`
     windSpeed: Float
     humidity: Int
     date: String
+    countryCode: String
+    feelsLike: Float
   }
 
   type Weather {
@@ -34,6 +36,25 @@ const typeDefs = gql`
     weather(city: String!): Weather
   }
 `;
+
+const formatDate = (unixTime) => {
+    const date = new Date(unixTime * 1000);
+    return new Intl.DateTimeFormat('en-US',{
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    }).format(date).replace(',','.');
+};
+
+const formatDate_light = (dateString) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US',{
+        month: 'short',
+        day: 'numeric'
+    }).format(date);
+};
 
 const resolvers = {
     Query: {
@@ -70,7 +91,7 @@ const resolvers = {
 
             // 객체를 배열로 변환
             const forecastList = Object.keys(groupedForecast).map((date) => ({
-                date: date,
+                date: formatDate_light(date),
                 details: groupedForecast[date],
             }));
 
@@ -80,9 +101,11 @@ const resolvers = {
                 current: {
                     temp: currentRes.main.temp,
                     description: currentRes.weather[0].description,
+                    feelsLike: currentRes.main.feels_like,
                     windSpeed: currentRes.wind.speed,
                     humidity: currentRes.main.humidity,
-                    date: new Date(currentRes.dt * 1000).toLocaleDateString(), // UNIX time 변환
+                    date: formatDate(currentRes.dt),
+                    countryCode: currentRes.sys.country
                 },
                 forecast: forecastList,
             };

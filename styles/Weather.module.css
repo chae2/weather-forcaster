@@ -8,9 +8,9 @@
 }
 
 .title {
+    font-family: 'Pretendard';
     text-align: center;
     font-size: 2rem;
-    font-weight: bold;
     margin-bottom: 20px;
     color: #333;
 }
@@ -64,6 +64,21 @@
     justify-content: space-between;
     padding: 8px 0;
     border-bottom: 1px solid #e0e0e0;
+}
+
+.earthImage {
+    display: block;
+    margin: 20px auto 0;
+    max-width: 50px;
+    width: 100%;
+    height: auto;
+}
+
+.population {
+    font-size: 0.7rem;
+    color: #666;
+    margin-left: 10px; /* 도시 이름과 간격 */
+    font-weight: 300;  /* 얇게 */
 }
 
 @media (max-width: 1280px) {
