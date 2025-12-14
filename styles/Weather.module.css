@@ -23,6 +23,11 @@
     margin-bottom: 20px;
 }
 
+.currentHeader {
+    display: flex;
+    align-items: center;
+}
+
 .currentWeather {
     display: flex;
     justify-content: space-between;
@@ -53,21 +58,39 @@
     font-size: 1.1rem;
 }
 
-.forecastSummary:hover {
-    background-color: #fafafa;
-}
-
 .forecastDetails {
     padding: 15px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
+    background-color: white;
 }
 
+/*아이콘+시간 */
 .detailRow {
     display: flex;
     justify-content: space-between;
     padding: 8px 0;
     border-bottom: 1px solid #e0e0e0;
+}
+
+.detailLeft{
+    display: flex;
+    align-items: center;
+}
+
+/* 오른쪽 그룹 (설명 + 온도) */
+.detailRight {
+    text-align: right; /* 우측 정렬 */
+}
+
+.detailTime {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.detailTemp {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
 }
 
 .earthImage {
@@ -84,11 +107,31 @@
     display: block;
 }
 
+.weatherIconCircle {
+    width: 50px;
+    height: 50px;
+    background-color: #f7dcd6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.1;
+    margin-right: 15px; /* 옆 텍스트와 간격 */
+    flex-shrink: 0; /* 찌그러짐 방지 */
+}
+
 .card h3 {
     text-align: center; /* 텍스트 가운데 정렬 */
     margin-top: 0;      /* 상단 여백 제거 */
     margin-bottom: 20px;
     font-size: 1.5rem;
+    /*제목 아래 구분선*/
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
 }
 
 .population {

@@ -2,19 +2,39 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Weather.module.css'; // 경로 주의
 
+// CSS 아이콘 컴포넌트
+const WeatherIcon = () => (
+    <div className={styles.weatherIconCircle}>
+        Weather<br/>icon
+    </div>
+);
+
 const CurrentWeather = ({ data, cityName, population }) => {
     if (!data) return null;
     return (
         <div className={styles.card}>
             <div className={styles.currentWeather}>
-                <div>
-                    <div style={{ color: '#666' }}>{data.date}</div>
-                    <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                        <h2 style={{ fontSize: '2rem', margin: '10px 0' }}>{cityName}, {data.countryCode}</h2>
-                        <span className={styles.population}>(인구수: {population ? population.toLocaleString() : 'N/A'})</span>
-                    </div>
+                {/* 왼쪽: 아이콘 + 날짜 + 도시 */}
+                <div className={styles.currentHeader}>
+                    {/* 아이콘 추가 */}
+                    <WeatherIcon />
 
+                    <div>
+                        <div style={{ color: '#666', fontSize: '0.9rem', marginBottom: '5px' }}>
+                            {data.date}
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                            <h2 style={{ fontSize: '2rem', margin: '0' }}>
+                                {cityName}, {data.countryCode}
+                            </h2>
+                            <span className={styles.population}>
+                                (인구수: {population ? population.toLocaleString() : 'N/A'})
+                            </span>
+                        </div>
+                    </div>
                 </div>
+
+                {/* 오른쪽: 온도 및 상세 */}
                 <div style={{ textAlign: 'right' }}>
                     <div className={styles.temp}>{data.temp}°C</div>
                     <div style={{ fontSize: '0.8rem', color: '#888' }}>
@@ -45,9 +65,22 @@ const ForecastItem = ({ dayData }) => {
                 <div className={styles.forecastDetails}>
                     {dayData.details.map((detail, index) => (
                         <div key={index} className={styles.detailRow}>
-                            <span>⏱ {detail.time}</span>
-                            <span>{detail.description}</span>
-                            <span>{detail.temp}°C</span>
+
+                            {/* 왼쪽 그룹: 아이콘 + 시간 */}
+                            <div className={styles.detailLeft}>
+                                <WeatherIcon />
+                                <span className={styles.detailTime}>{detail.time}</span>
+                            </div>
+
+                            {/* 오른쪽 그룹: 설명(위) + 온도(아래) */}
+                            <div className={styles.detailRight}>
+                                <div className={styles.detailDesc}>
+                                    {detail.description || 'clear sky'}
+                                </div>
+                                <div className={styles.detailTemp}>
+                                    {detail.tempMin}°C / {detail.tempMax}°C
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -75,10 +108,10 @@ export default function WeatherDetailPage() {
               population
               current {
                 temp
-                description  # 스키마와 일치 (desc -> description)
+                description 
                 humidity
                 feelsLike
-                windSpeed    # 스키마와 일치 (wind -> windSpeed)
+                windSpeed  
                 date
                 countryCode
               }
@@ -86,8 +119,9 @@ export default function WeatherDetailPage() {
                 date
                 details {
                   time
-                  temp
-                  description # 스키마와 일치
+                  tempMin
+                  tempMax
+                  description 
                 }
               }
             }

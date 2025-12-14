@@ -14,17 +14,17 @@
     font-display: swap;
 }
 
-/* 3. ExtraBold (800) - 제목(H1)용 */
+/* 3. Black (900) - 제목(H1)용 */
 @font-face {
     font-family: 'Pretendard';
-    font-weight: 800;
-    src: url('/fonts/Pretendard-ExtraBold.woff2') format('woff2');
+    font-weight: 900;
+    src: url('/fonts/Pretendard-Black.woff2') format('woff2');
     font-display: swap;
 }
 
 h1 {
     font-family: 'Pretendard';
-    font-weight: 800; /* Pretendard-ExtraBold.woff2 파일 로드됨 */
+    font-weight: 900; /* Pretendard-Black.woff2 파일 로드됨 */
 }
 
 /*기본 스타일*/

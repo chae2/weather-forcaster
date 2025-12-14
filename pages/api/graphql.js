@@ -6,7 +6,8 @@ const typeDefs = gql`
   type ForecastDetail {
     time: String
     description: String
-    temp: Float
+    tempMin: Float
+    tempMax: Float
   }
 
   # 하루 단위의 요약 데이터 (프론트엔드 구조에 맞춤)
@@ -56,6 +57,16 @@ const formatDate_light = (dateString) => {
     }).format(date);
 };
 
+const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const time = new Intl.DateTimeFormat('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    }).format(date);
+    return time.toLowerCase().replace(' ', '');
+}
+
 const resolvers = {
     Query: {
         weather: async (_, { city }) => {
@@ -83,9 +94,10 @@ const resolvers = {
                 }
 
                 groupedForecast[date].push({
-                    time: time,
+                    time: formatTime(item.dt_txt),
                     description: item.weather[0].description,
-                    temp: item.main.temp,
+                    tempMin: item.main.temp_min,
+                    tempMax: item.main.temp_max
                 });
             });
 
