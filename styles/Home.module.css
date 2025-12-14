@@ -19,9 +19,9 @@
 .title {
     /*Bold 폰트 적용 */
     font-family: 'Pretendard', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 4rem;
-    color: #333;
+    color: #3D3D3D;
     text-align: center;
     line-height: 1.2;
     margin-bottom: 20px;
@@ -29,7 +29,7 @@
 
 /* 붉은색 강조 텍스트 */
 .highlight {
-    color: #e54b5e;
+    color: #FF0045;
 }
 
 /* 서브 타이틀 */
@@ -53,13 +53,13 @@
 /* 도시 버튼 스타일 */
 .cityButton {
     /* a 태그이므로 색상과 폰트 강제 지정 */
-    color: #e54b5e;
+    color: #FF0045;
     font-family: 'Pretendard', sans-serif;
     font-weight: 300; /* Light */
     font-size: 1.1rem;
 
     background: white;
-    border: 2px solid #e54b5e;
+    border: 2px solid #FF0045;
     border-radius: 12px;
     padding: 15px 50px;
     cursor: pointer;
@@ -67,10 +67,15 @@
 }
 
 .cityButton:hover {
-    background: #e54b5e;
-    color: white;
+    background: #FFD2CC;
+    /*color: white;*/
     transform: translateY(-3px); /* 살짝 떠오르는 효과 */
     box-shadow: 0 10px 20px rgba(229, 75, 94, 0.2);
+    border: 2px solid #B70055;
+}
+
+.cityButton:active {
+    background: #FFABA1;
 }
 
 /* 지구 이미지 */
